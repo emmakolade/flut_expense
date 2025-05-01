@@ -38,3 +38,35 @@ class Expense {
     required this.category,
   }) : id = uuid.v4(); // Generate a unique ID using uuid package
 }
+
+class ExpenseBucket {
+  ExpenseBucket({
+    // required this.id,
+    // required this.title,
+    required this.category,
+    required this.expenses,
+  });
+
+  //alternative constructor function
+  // ExpenseBucket.category(this.category) : expenses = [];
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+    : expenses = allExpenses {
+    for (var expense in allExpenses) {
+      if (expense.category == category) {
+        expenses.add(expense);
+      }
+    }
+  }
+
+  // final String id;
+  // final String title;
+  final Category category;
+  final List<Expense> expenses;
+  double get totalExpenses {
+    double total = 0;
+    for (var expense in expenses) {
+      total += expense.amount;
+    }
+    return total;
+  }
+}
