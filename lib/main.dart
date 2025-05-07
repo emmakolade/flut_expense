@@ -1,76 +1,30 @@
+import 'package:expense_tracker/screens/categories.dart';
+import 'package:expense_tracker/screens/meals.dart';
 import 'package:flutter/material.dart';
-import 'package:expense_tracker/expenses.dart';
-import "package:flutter/services.dart";
-import 'package:flutter/foundation.dart';
 
-var kColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromARGB(255, 148, 142, 171),
-  // primary: const Color.fromARGB(255, 0, 0, 0),
-  // secondary: const Color.fromARGB(255, 255, 255, 255),
-);
+import 'package:google_fonts/google_fonts.dart';
 
-var kDarkColorScheme = ColorScheme.fromSeed(
-  seedColor: const Color.fromARGB(255, 89, 55, 226),
-  brightness: Brightness.dark,
-  // primary: const Color.fromARGB(255, 0, 0, 0),
-  // secondary: const Color.fromARGB(255, 255, 255, 255),
+final theme = ThemeData(
+  useMaterial3: true,
+  colorScheme: ColorScheme.fromSeed(
+    brightness: Brightness.dark,
+    seedColor: const Color.fromARGB(255, 131, 57, 0),
+  ),
+  textTheme: GoogleFonts.latoTextTheme(),
 );
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]).then((fn) {
-      runApp(
-    MaterialApp(
-      darkTheme: ThemeData.dark().copyWith(
-        colorScheme: kDarkColorScheme,
-        cardTheme: const CardTheme().copyWith(
-          color: kDarkColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kDarkColorScheme.primaryContainer,
-            foregroundColor: kDarkColorScheme.onPrimaryContainer,
-          ),
-        ),
-      ),
-      theme: ThemeData(
-        // scaffoldBackgroundColor: const Color.fromARGB(255, 148, 142, 171),
-        colorScheme: kColorScheme,
-        appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: kColorScheme.onPrimaryContainer,
-          foregroundColor: kColorScheme.primaryContainer,
-        ),
-        cardTheme: const CardTheme().copyWith(
-          color: kColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kColorScheme.primaryContainer,
-            // foregroundColor: kColorScheme.onPrimaryContainer,
-          ),
-        ),
-        textTheme: const TextTheme().copyWith(
-          titleLarge: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.normal,
-          ),
-          labelLarge: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      // themeMode: ThemeMode.system,
-      home: Expenses(),
-    ),
-  );
+  runApp(const App());
+}
 
+class App extends StatelessWidget {
+  const App({super.key});
 
-  });
-
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: theme,
+      home: const MealsScreen(title: ,),
+    );
+  }
 }
